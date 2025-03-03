@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Space Shooter</title>
+    <!-- Load p5.js library - this is the main graphics/game engine -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    
+    <!-- Load Supabase client library for database functionality -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+      // Initialize Supabase client with your project URL and public API key
+      // This creates a connection to your database that can be used throughout the app
+      window.supabaseClient = supabase.createClient(
+        'https://rfpcgzdlsrpsvhcdrege.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcGNnemRsc3Jwc3ZoY2RyZWdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEwMjc5OTYsImV4cCI6MjA1NjYwMzk5Nn0.NGc28d48-xExJWMfwTxQ9mcfhBL0Q30EL0RLu6kiKf4'
+      );
+    </script>
+    <style>
+        /* Basic styling for the entire page */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center;     /* Center content vertically */
+            height: 100vh;           /* Full viewport height */
+            background-color: #0a0a1a; /* Dark background for space theme */
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Style for the game canvas */
+        canvas {
+            display: block;
+            border: 2px solid #333; /* Add border around game area */
+        }
+        
+        /* Container to hold the game and overlay elements */
+        #gameContainer {
+            position: relative; /* Allows absolute positioning of children */
+        }
+        
+        /* Styling for the leaderboard submission form */
+        #leaderboardForm {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the form */
+            background: rgba(0, 0, 0, 0.8);   /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: none;  /* Hidden by default, shown when needed */
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        /* Style for form inputs and buttons */
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+        
+        /* Style for buttons */
+        button {
+            background: #00c3ff;  /* Cyan color matching AI theme */
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* Button hover effect */
+        button:hover {
+            background: #00a0d0;  /* Darker shade when hovering */
+        }
+        
+        /* Style for privacy consent checkbox area */
+        .privacy-consent {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the game and UI elements -->
+    <div id="gameContainer">
+        <!-- Leaderboard submission form - hidden by default, shown after game over -->
+        <div id="leaderboardForm">
+            <h2>Submit Your Score</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <!-- Input for player name -->
+            <input type="text" id="playerName" placeholder="Your Name" maxlength="20">
+            <!-- Optional email input for lead generation -->
+            <input type="email" id="playerEmail" placeholder="Your Email (optional)">
+            <!-- Privacy consent checkbox for GDPR compliance -->
+            <div class="privacy-consent">
+                <input type="checkbox" id="privacyConsent" checked>
+                <label for="privacyConsent">I consent to storing my name and email for leaderboard purposes</label>
+            </div>
+            <!-- Buttons for form actions -->
+            <button id="submitScore">Submit Score</button>
+            <button id="skipSubmission">Skip & View Leaderboard</button>
+        </div>
+    </div>
+    <!-- Load the main game script -->
+    <script src="sketch.js"></script>
+</body>
+</html>
