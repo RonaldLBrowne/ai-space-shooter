@@ -4,7 +4,7 @@
 
 ## 🎮 Play the Game
 
-[Play AI Space Shooter online!](https://your-username.github.io/ai-space-shooter/)
+[Play AI Space Shooter online!](https://ronaldlbrowne.github.io/ai-space-shooter/)
 
 ## 🤖 About the Game
 
